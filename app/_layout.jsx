@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native'
 import { SplashScreen, Stack } from 'expo-router';
 import { useFonts } from 'expo-font'
 import { useEffect } from 'react';
@@ -34,8 +33,12 @@ const RootLayout = () => {
   <Stack>
     <Stack.Screen name="index" options={{ headerShown:false 
     }} />
-    {/* <Stack.Screen name="(tabs)" options={{ headerShown:false 
-    }} /> */}
+    <Stack.Screen name="auth/Login" options={{ headerShown:false 
+    }} />
+    <Stack.Screen name="auth/Register" options={{ headerShown:false 
+    }} />
+    <Stack.Screen name="(tabs)" options={{ headerShown:false 
+    }} />
   </Stack>
   )
 }

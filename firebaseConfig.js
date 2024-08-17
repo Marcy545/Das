@@ -1,5 +1,7 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { initializeAuth, getReactNativePersistence } from "firebase/auth";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getFirestore } from "firebase/firestore";
 
 // Optionally import the services that you want to use
 // import {...} from "firebase/auth";
@@ -10,17 +12,22 @@ import { getAuth } from 'firebase/auth';
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: 'api-key',
-  authDomain: 'project-id.firebaseapp.com',
-  databaseURL: 'https://project-id.firebaseio.com',
-  projectId: 'project-id',
-  storageBucket: 'project-id.appspot.com',
-  messagingSenderId: 'sender-id',
-  appId: 'app-id',
-  measurementId: 'G-measurement-id',
+  apiKey: "AIzaSyB8KoEgSfcetJyvBpGQeBV35jgC3X7xNGU",
+  authDomain: "tododas-ea7f7.firebaseapp.com",
+  projectId: "tododas-ea7f7",
+  storageBucket: "tododas-ea7f7.appspot.com",
+  messagingSenderId: "875032766252",
+  appId: "1:875032766252:web:b88f662fdd4aed6837ee89",
+  measurementId: "G-64XVFBZNKM"
 };
 
-export const ToDoDas_APP = initializeApp(firebaseConfig);
-export const ToDoDas_AUTH = getAuth(ToDoDas_APP);
-// For more information on how to access Firebase in your project,
-// see the Firebase documentation: https://firebase.google.com/docs/web/setup#access-firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase Auth with AsyncStorage persistence
+const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(AsyncStorage)
+});
+const db = getFirestore(app);
+
+
+export { auth,db };
